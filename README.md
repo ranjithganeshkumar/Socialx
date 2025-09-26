@@ -6,7 +6,7 @@ This version is deployed on an AWS EC2 instance.
 
 🚀 Tech Stack
 
-Frontend: React (Vite), TailwindCSS (if used)
+Frontend: React (Vite), TailwindCSS 
 
 Backend: Spring Boot (Java)
 
