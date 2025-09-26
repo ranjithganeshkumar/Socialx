@@ -1,7 +1,8 @@
 SocialX
 
-A simple social media platform built with React (frontend) and Spring Boot + PostgreSQL (backend).
-Currently supports user authentication (login & signup) and comes with Docker support for easy deployment.
+SocialX is a simple social media platform built with React (frontend) and Spring Boot + PostgreSQL (backend).
+It currently supports user authentication (login & signup) and is Dockerized for easy deployment.
+This version is deployed on an AWS EC2 instance.
 
 🚀 Tech Stack
 
@@ -13,7 +14,7 @@ Database: PostgreSQL
 
 Containerization: Docker & Docker Compose
 
-Build Tools: Maven, npm/yarn
+Hosting: AWS EC2
 
 ✨ Features
 
@@ -22,6 +23,8 @@ Build Tools: Maven, npm/yarn
 🔐 User Login (JWT authentication if implemented)
 
 🐳 Dockerized setup for backend, frontend, and database
+
+☁️ Hosted on AWS EC2
 
 📂 Project Structure
 SocialX/
@@ -36,10 +39,7 @@ SocialX/
 git clone https://github.com/ranjithganeshkumar/Socialx.git
 cd socialx
 
-2. Run with Docker
-
-Make sure Docker & Docker Compose are installed. Then run:
-
+2. Run with Docker on Local Machine (Optional)
 docker compose up --build
 
 
@@ -51,35 +51,63 @@ Backend API on http://localhost:8085
 
 PostgreSQL Database on port 5432
 
-3. Run locally without Docker (optional)
-Backend
-cd backend
-./mvnw spring-boot:run
+🖥️ Deployment on EC2
 
-Frontend
-cd frontend
-npm install
-npm run dev
+SSH into your EC2 instance:
+
+ssh -i "socailx1.pem" ec2-user@your-ec2-ip
+
+
+Clone the repo on EC2 (if not already):
+
+git clone https://github.com/ranjithganeshkumar/Socialx.git
+cd socialx
+
+
+Run Docker Compose:
+
+docker compose up --build -d
+
+
+Frontend: http://ec2-your-ip:5173
+
+Backend API: http://ec2-your-ip:8085
+
+PostgreSQL: inside Docker container
+
+Check running containers:
+
+docker ps
+
+
+Stop containers:
+
+docker compose down
 
 🛠️ Environment Variables
-
-Create a .env file in the frontend and set your API base URL:
-
+Frontend .env
+# Local development
 VITE_API_URL=http://localhost:8085
 
+# EC2 Deployment
+VITE_API_URL=http://ec2-your-ip:8085
 
-In the backend (application.properties or yml):
 
+In React code:
+
+const API_URL = import.meta.env.VITE_API_URL || "http://ec2-your-ip:8085";
+
+Backend (application.properties or .yml)
 spring.datasource.url=jdbc:postgresql://localhost:5432/socialx
 spring.datasource.username=postgres
-spring.datasource.password=yourpassword
+spring.datasource.password=*******
 
 📌 Roadmap
 
--> Profile management
+->Profile management
 
--> Post creation & feed
+->Post creation & feed
 
--> Likes & comments
+->Likes & comments
 
--> Friend requests / follow system
+->Friend requests / follow system
