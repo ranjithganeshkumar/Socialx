@@ -10,7 +10,7 @@ import java.io.IOException;
 
 @RestController
 @RequestMapping("/api/profile")
-@CrossOrigin(origins = "http://localhost:5173")
+@CrossOrigin(origins = "http://ec2-54-234-170-131.compute-1.amazonaws.com:5173")
 public class ProfileController {
 
     private final UserService service;

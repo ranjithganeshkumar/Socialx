@@ -7,8 +7,8 @@ interface AuthState {
   isAuthenticated: boolean;
 }
 
-// ✅ API base URL comes from .env (e.g., VITE_API_URL=http://localhost:8085)
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8085";
+// ✅ API base URL comes from .env (e.g., VITE_API_URL=http://ec2-54-234-170-131.compute-1.amazonaws.com:8085)
+const API_URL = import.meta.env.VITE_API_URL || "http://ec2-54-234-170-131.compute-1.amazonaws.com:8085";
 
 export const useAuth = () => {
   const [authState, setAuthState] = useState<AuthState>({

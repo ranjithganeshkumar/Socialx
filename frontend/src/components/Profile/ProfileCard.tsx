@@ -30,7 +30,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
     if (file) formData.append("profilePicture", file);
 
     try {
-      const res = await fetch(`http://localhost:8080/api/profile/${user.id}/edit`, {
+      const res = await fetch(`http://ec2-54-234-170-131.compute-1.amazonaws.com:8080/api/profile/${user.id}/edit`, {
         method: "POST",
         body: formData,
       });
@@ -49,7 +49,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({
   const handleFollow = async () => {
     try {
       // Example API (you’ll need to create this in Spring Boot)
-      const res = await fetch(`http://localhost:8080/api/users/${user.id}/follow`, {
+      const res = await fetch(`http://ec2-54-234-170-131.compute-1.amazonaws.com:8080/api/users/${user.id}/follow`, {
         method: "POST",
       });
       if (!res.ok) throw new Error("Follow failed");
